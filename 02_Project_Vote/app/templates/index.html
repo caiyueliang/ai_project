@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}投票列表{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>投票列表</h3>
+  {% if current_user.is_authenticated and current_user.is_admin %}
+    <a class="btn btn-primary" href="{{ url_for('polls.create') }}">创建投票</a>
+  {% endif %}
+</div>
+<div class="list-group">
+  {% for poll in polls %}
+    <a class="list-group-item list-group-item-action" href="{{ url_for('polls.detail', poll_id=poll.id) }}">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ poll.title }}</h5>
+        <small>{% if poll.is_active() %}进行中{% else %}未进行{% endif %}</small>
+      </div>
+      <p class="mb-1 text-muted">{{ poll.description }}</p>
+      <small>类型：{% if poll.is_multiple %}多选{% else %}单选{% endif %} | 时间：{{ poll.start_time }} ~ {{ poll.end_time }}</small>
+    </a>
+  {% else %}
+    <div class="alert alert-info">暂无投票</div>
+  {% endfor %}
+  </div>
+{% endblock %}

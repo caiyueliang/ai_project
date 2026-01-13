@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}投票详情{% endblock %}
+{% block content %}
+<h3 class="mb-3">{{ poll.title }}</h3>
+<p class="text-muted">{{ poll.description }}</p>
+<p>类型：{% if poll.is_multiple %}多选{% else %}单选{% endif %} | 时间：{{ poll.start_time }} ~ {{ poll.end_time }}</p>
+<form method="post" action="{{ url_for('polls.vote', poll_id=poll.id) }}">
+  {{ csrf_token() }}
+  <div class="list-group">
+    {% for o in options %}
+      <label class="list-group-item">
+        {% if poll.is_multiple %}
+          <input class="form-check-input me-1" type="checkbox" name="options" value="{{ o.id }}">
+        {% else %}
+          <input class="form-check-input me-1" type="radio" name="options" value="{{ o.id }}">
+        {% endif %}
+        {{ o.text }}
+      </label>
+    {% endfor %}
+  </div>
+  <button class="btn btn-primary mt-3" type="submit">提交</button>
+  <a class="btn btn-secondary mt-3 ms-2" href="{{ url_for('polls.results', poll_id=poll.id) }}">查看结果</a>
+</form>
+{% endblock %}

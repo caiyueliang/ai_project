@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .database import engine, Base
+from .database import engine, Base, SessionLocal
 from .routers import auth, funds, backtest, users
+from .models import Fund
 
 # Create tables
 Base.metadata.create_all(bind=engine)
@@ -24,8 +25,27 @@ app.add_middleware(
 )
 
 app.include_router(auth.router)
+app.include_router(users.router)
 app.include_router(funds.router)
 app.include_router(backtest.router)
+
+
+@app.on_event("startup")
+def ensure_seed_data():
+    db = SessionLocal()
+    try:
+        has_funds = db.query(Fund.id).first() is not None
+        if not has_funds:
+            db.add_all(
+                [
+                    Fund(code="000001", name="华夏成长", fund_type="混合型"),
+                    Fund(code="000002", name="华夏大盘精选", fund_type="混合型"),
+                    Fund(code="110011", name="易方达中小盘", fund_type="混合型"),
+                ]
+            )
+            db.commit()
+    finally:
+        db.close()
 
 @app.get("/")
 def read_root():

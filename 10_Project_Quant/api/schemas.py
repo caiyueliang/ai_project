@@ -42,6 +42,29 @@ class FundResponse(FundBase):
     class Config:
         from_attributes = True
 
+
+class FundListItem(FundBase):
+    id: int
+    nav: Optional[float] = None
+    nav_date: Optional[date] = None
+    daily_change_pct: Optional[float] = None
+
+
+class FundListResponse(BaseModel):
+    total: int
+    items: List[FundListItem]
+
+class FundNavResponse(BaseModel):
+    nav_date: date
+    nav: float
+    accumulated_nav: Optional[float] = None
+
+    class Config:
+        from_attributes = True
+
+class FundDetailResponse(FundResponse):
+    navs: List[FundNavResponse] = []
+
 class BacktestCreate(BaseModel):
     fund_codes: List[str]
     start_date: date

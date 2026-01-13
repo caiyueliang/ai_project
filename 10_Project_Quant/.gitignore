@@ -1,24 +1,107 @@
-# Logs
-logs
+# --- System ---
+.DS_Store
+Thumbs.db
+
+# --- Development Environment ---
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.iml
+*.ipr
+*.iws
+
+# --- Dependencies ---
+node_modules/
+bower_components/
+vendor/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Virtual Environment ---
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# --- Database ---
+*.db
+*.sqlite3
+*.sqlite
+fund_quant.db
+
+# --- Build Output ---
+dist/
+build/
+*.exe
+*.dll
+*.dylib
+dist-ssr
+
+# --- Logs ---
 *.log
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+celerybeat-schedule
 
-node_modules
-dist
-dist-ssr
+# --- Environment Variables ---
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*
+!.env.example
+
+# --- Cache ---
+.cache/
+.next/
+.nuxt/
+.pytest_cache/
+.mypy_cache/
+
+# --- Testing & Coverage ---
+coverage/
+*.lcov
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# --- Temporary Files ---
+*.tmp
+*.bak
+*.swp
+*~
 *.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?

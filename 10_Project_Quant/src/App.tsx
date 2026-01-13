@@ -7,6 +7,7 @@ import Funds from './pages/Funds';
 import BacktestConfig from './pages/BacktestConfig';
 import History from './pages/History';
 import BacktestResult from './pages/BacktestResult';
+import Users from './pages/admin/Users';
 
 const App: React.FC = () => {
   return (

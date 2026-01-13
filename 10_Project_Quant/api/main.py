@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
-from .routers import auth, funds, backtest
+from .routers import auth, funds, backtest, users
 
 # Create tables
 Base.metadata.create_all(bind=engine)
@@ -11,6 +11,7 @@ app = FastAPI(title="Fund Quant Platform API")
 # CORS
 origins = [
     "http://localhost:5173",
+    "http://localhost:5174",
     "http://localhost:3000",
 ]
 

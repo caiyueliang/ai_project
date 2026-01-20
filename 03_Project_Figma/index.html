@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Filters - 产品筛选</title>
+    <meta name="description" content="基于品牌筛选的高品质产品展示页面">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.svg" alt="Brand Filters Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <span style="display:none; font-weight:700; font-size: 1.5rem;">BrandStore</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">产品</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" aria-label="搜索"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+                <button class="icon-btn" aria-label="购物车"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></button>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <aside class="filters-sidebar">
+            <div class="filters-header">
+                <h2>筛选</h2>
+                <button id="clear-filters" class="text-btn">清除所有</button>
+            </div>
+            
+            <div class="filter-group">
+                <h3>品牌</h3>
+                <div class="checkbox-list" id="brand-filters">
+                    <!-- JS will populate this -->
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="brand" value="nike">
+                        <span class="checkmark"></span>
+                        Nike <span class="count">(12)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="brand" value="adidas">
+                        <span class="checkmark"></span>
+                        Adidas <span class="count">(8)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="brand" value="puma">
+                        <span class="checkmark"></span>
+                        Puma <span class="count">(5)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="brand" value="reebok">
+                        <span class="checkmark"></span>
+                        Reebok <span class="count">(3)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>价格范围</h3>
+                <div class="price-range">
+                    <input type="range" id="price-slider" min="0" max="1000" step="10" value="1000">
+                    <div class="price-labels">
+                        <span>¥0</span>
+                        <span id="price-value">¥1000</span>
+                    </div>
+                </div>
+            </div>
+            
+             <button class="btn-primary mobile-apply-btn">应用筛选</button>
+        </aside>
+
+        <section class="products-area">
+            <div class="products-header">
+                <h1 class="page-title">运动鞋系列</h1>
+                <div class="sort-controls">
+                    <span class="product-count">显示 <b id="visible-count">12</b> 个产品</span>
+                    <select id="sort-select">
+                        <option value="featured">推荐排序</option>
+                        <option value="price-asc">价格：低到高</option>
+                        <option value="price-desc">价格：高到低</option>
+                        <option value="newest">最新上架</option>
+                    </select>
+                </div>
+                <button class="filter-toggle-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                    筛选
+                </button>
+            </div>
+
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be injected by JS -->
+            </div>
+            
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <span class="ellipsis">...</span>
+                <button class="page-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>BrandStore</h3>
+                    <p>为您提供最优质的运动装备选择。</p>
+                </div>
+                <div class="footer-links">
+                    <h4>帮助</h4>
+                    <ul>
+                        <li><a href="#">配送信息</a></li>
+                        <li><a href="#">退换货政策</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="#">品牌故事</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">最新资讯</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BrandStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
